@@ -26,4 +26,16 @@ The following installations are required:
  - Under Vanilla configuration set the main site url, authentication url, registeration url, sign in and sign out url (see screen shot for example)
  - Click save settings.
 - Clear the browser and elgg cache.
+- This version of the plugin enables it to be displayed properly with the facebook theme for elgg 1.8.3
+- To enable it add the following code to facebook_theme_pagesetup_handler in start.php
+- if (elgg_is_active_plugin('vanilla_bridge')) {
+			$discussions_text=elgg_get_plugin_setting("forum_title","vanilla_bridge");
+			elgg_register_menu_item('topbar', array(
+						'name' => 'discussions',
+						'text' => "".elgg_echo("$discussions_text"),
+						'priority' => 2,
+						
+						'href' => 'vanilla_bridge/all'
+		));
+		}
 - Enjoy.
